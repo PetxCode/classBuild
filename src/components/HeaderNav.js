@@ -24,6 +24,8 @@ const HeaderNav = () => {
       <Wrapper>
         <Span to="/">Home</Span>
         <Span to="/addTask">Add Task</Span>
+        <Span to="/ai">AIs</Span>
+        <Span to="/at">AI Test</Span>
       </Wrapper>
       <Holder>
         <Icon />

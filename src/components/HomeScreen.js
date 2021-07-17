@@ -16,7 +16,18 @@ const HomeScreen = () => {
   };
 
   const deleteData = async (id) => {
-    await axios.delete(`https://letbuild22.herokuapp.com/api/${id}`);
+    await axios.delete(`https://buildapi24.herokuapp.com/api/${id}`);
+
+    window.location.reload();
+  };
+
+  const updateData = async (id) => {
+    const updateFile = {
+      done: true,
+    };
+    await axios.patch(`https://buildapi24.herokuapp.com/api/${id}`, {
+      done: true,
+    });
 
     window.location.reload();
   };
@@ -29,10 +40,15 @@ const HomeScreen = () => {
     <Container>
       {fetchData.map(({ _id, task, done, name }) => (
         <Wrapper key={_id}>
-          <ColorMap />
+          {done ? <ColorMap clr /> : <ColorMap />}
           <span>{name}</span>
           <Button>
-            <Icon2 />
+            <Icon2
+              onClick={() => {
+                updateData(_id);
+                console.log(done, _id);
+              }}
+            />
             <Icon
               onClick={() => {
                 deleteData(_id);
@@ -58,16 +74,18 @@ const Button = styled.div`
 const Icon = styled(AiFillDelete)`
   color: red;
   cursor: pointer;
+  font-size: 20px;
 `;
 const Icon2 = styled(MdSystemUpdateAlt)`
   color: green;
   cursor: pointer;
+  font-size: 20px;
 `;
 
 const ColorMap = styled.div`
   width: 100%;
   height: 120px;
-  background-color: red;
+  background-color: ${({ clr }) => (clr ? "green" : "red")};
   border-radius: 10px 10px 0px 0;
 `;
 

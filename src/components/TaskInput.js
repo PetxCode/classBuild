@@ -14,7 +14,7 @@ const TaskInput = () => {
     };
 
     await axios
-      .post(`https://letbuild22.herokuapp.com/api`, myTask)
+      .post(`https://buildapi24.herokuapp.com/api`, myTask)
       .then((res) => console.log(res));
     setText("");
     window.location.reload();
